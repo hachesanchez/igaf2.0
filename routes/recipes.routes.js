@@ -9,7 +9,10 @@ router.get('/recipes', (req, res, next) => {
     // res.send("HOAISDOAKSODAOSDKOASKD")
     recipeApiHandler
         .getAllRecipes()
-        .then(response => res.render('recipes/recipes-list', { recipes: response.data }))
+        .then(response => {
+            //      console.log(response.data.results)
+            res.render('recipes/recipes-list', { recipes: response.data.results })
+        })
         .catch(err => next(err))
 })
 
