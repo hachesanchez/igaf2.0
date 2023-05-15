@@ -11,6 +11,9 @@ module.exports = app => {
     // Recipe Routes
     const recipeRouter = require("./recipes.routes");
     app.use("/", recipeRouter)
+    // User Routes
+    const userRouter = require("./user.routes");
+    app.use("/", userRouter)
 
     // User routes
     /*    const userRouter = require("./user.routes");
