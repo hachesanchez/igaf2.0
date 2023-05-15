@@ -18,12 +18,20 @@ router.get('/recipes', (req, res, next) => {
 })
 
 
-/* router.get('/recipes/:id', (req, res, next) => {
+router.get('/recipes/:id', (req, res, next) => {
+
+    const { id } = req.params
+
     recipeApiHandler
-        .getOneRecipe()
-        .then(response => )
+        .getOneRecipe(id)
+        .then(response => {
+            console.log(response.data.results)
+            res.render('recipes/recipes-details', { recipe: response.data })
+        })
+        .catch(err => next(err))
+
 })
- */
+
 
 
 //chef-routes
@@ -31,4 +39,6 @@ router.get('/recipes', (req, res, next) => {
 
 
 module.exports = router;
+
+
 
