@@ -1,12 +1,32 @@
 <div class="container">
     <h1>Recetas super chulis</h1>
 
-    <div class="recipes-list mt-5">
-        <ul>
-            {{#each recipes}}
-            <li> {{title}} </li>
-            {{/each}}
-        </ul>
+
+    <div class="row">
+
+        {{#each recipes}}
+
+        <div class=" card col-3 mt-2">
+
+            <div>
+                <img class="card-img-top" src="{{image}}" alt="profile-pic">
+            </div>
+
+            <div class="card-body" style="color: black;">
+                <h5 class="card-title"><strong>{{title}}</strong> </h5>
+                <a href="/recipes/{{id}}" class="btn btn-outline-dark btn-sm">View Recipe</a>
+
+            </div>
+
+        </div>
+
+        {{/each}}
     </div>
 </div>
 
+<<<<<<< HEAD
+=======
+
+
+{{!-- <li> <a href="/characters/{{id}}"> {{ name }} </a></li> --}}
+>>>>>>> fa74bc33c2c4414c5c5c7e251085d7395426d393

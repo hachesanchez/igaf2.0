@@ -2,6 +2,7 @@ const router = require("express").Router();
 const axios = require("axios");
 
 const recipeApiHandler = require('../services/recipes-api.service');
+const { response } = require("express");
 //const { response } = require("../app");
 
 
@@ -16,6 +17,13 @@ router.get('/recipes', (req, res, next) => {
         .catch(err => next(err))
 })
 
+
+/* router.get('/recipes/:id', (req, res, next) => {
+    recipeApiHandler
+        .getOneRecipe()
+        .then(response => )
+})
+ */
 
 module.exports = router;
 
