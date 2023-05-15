@@ -15,10 +15,10 @@ class RecipeApiHandler {
         return this.axiosApp.get(`/recipes/complexSearch?apiKey=${process.env.API_KEY_RECIPE}`)
     }
 
-    /*  getOneRecipe() {
-         return this.axiosApp.get(`/recipes/${recipeId}`)
-     }
-  */
+    getOneRecipe(recipeId) {
+        return this.axiosApp.get(`/recipes/${recipeId}/information?apiKey=${process.env.API_KEY_RECIPE}`)
+    }
+
 
 
 }
@@ -28,19 +28,12 @@ const recipeApiHandler = new RecipeApiHandler()
 
 module.exports = recipeApiHandler
 
-/* getAllRecipes() {
-    return this.axiosApp.get(`/recipes/complexSearch&number=50?apiKey=${process.env.API_KEY_RECIPE}`)
-} */
 
 
 
 
 /* 
-// DETAILS
-getOneCharacter(characterId) {
-    return this.axiosApp.get(`/characters/${characterId}`)
-}
-
+ 
 // SAVE UPDATE
 saveCharacter(characterInfo) {
     return this.axiosApp.post(`/characters`, characterInfo)
