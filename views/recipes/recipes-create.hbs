@@ -1,0 +1,57 @@
+<div class="container mt-5">
+
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+
+            <h1>New Recipe</h1>
+            <hr>
+            <form action="/recipes/create" method="POST">
+                <div class="row">
+                    <div class="col">
+                        <div class="mb-3">
+                            <label for="tittle" class="form-label">Tittle</label>
+                            <input type="text" class="form-control" id="tittle" name="tittle">
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="mb-3">
+                            <label for="image" class="form-label">Image</label>
+                            <input type="text" class="form-control" id="image" name="image">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="instructions" class="form-label">instructions</label>
+                    <input type="text" class="form-control" id="instructions" name="instructions">
+                </div>
+
+                <div class="mb-3">
+                    <label for="ingredients" class="form-label">Ingredients</label>
+                    <div class="ingredient-inputs">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="Amount" name="amount[]">
+                            <input type="text" class="form-control" placeholder="Name" name="name[]">
+                            <button type="button" class="btn btn-danger remove-ingredient-input">Remove</button>
+                        </div>
+                        <!-- Add more inputs dynamically with JavaScript -->
+                    </div>
+                    <button type="button" class="btn btn-success add-ingredient-input">Add ingredient</button>
+                </div>
+
+                <div class="mb-3">
+                    <label for="owner" class="form-label">Owner</label> 
+                    <input type="text" class="form-control" id="owner" name="owner">
+                </div>
+
+
+
+                <div class="d-grid mt-5">
+                    <button type="submit" class="btn btn-dark btn-lg">Crear recipe</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+</div>
