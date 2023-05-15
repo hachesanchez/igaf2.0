@@ -1,0 +1,66 @@
+<div class="container">
+
+    <div class="row justify-content-center">
+
+        <div class="col-md-6">
+
+            <h1>Registro</h1>
+            <hr>
+
+            <form action="/register" method="POST">
+
+                <div class="mb-3 row">
+                    <div class="col">
+                        <label for="emailInput" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="emailInput" name="email">
+                        <div class="form-text">Required.</div>
+                    </div>
+                    <div class="col">
+                        <label for="pwdInput" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="pwdInput" name="userPwd">
+                        <div class="form-text">Required.</div>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="usernameInput" class="form-label">Username</label>
+                    <input type="text" class="form-control" id="usernameInput" name="userName">
+                </div>
+
+                <div class="mb-3">
+                    <label for="imageInput" class="form-label">Profile picture</label>
+                    <input type="url" class="form-control" id="imageInput" name="profileImage">
+                    <div class="form-text">Insert your URL.</div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="descriptionInput" class="form-label">Description</label>
+                    <textarea class="form-control" id="descriptionInput" rows="3" name="description"></textarea>
+                </div>
+
+                <div class="mb-3">
+                    <label for="roleInput" class="form-label">Role</label>
+                    <select class="form-control" id="roleInput" rows="3" name="role">
+                        <option value="USER">User</option>
+                        <option value="CHEF">Chef</option>
+                    </select>
+
+                </div>
+
+
+
+                <div class="d-grid gap-2">
+                    <button type="submit" class="btn btn-dark block">Finish registration</button>
+                </div>
+
+                {{#if errorMessage}}
+                <div id="errorMessage">
+                    <p>{{errorMessage}}</p>
+                </div>
+                {{/if}}
+
+            </form>
+        </div>
+    </div>
+
+</div>
