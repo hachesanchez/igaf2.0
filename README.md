@@ -12,7 +12,7 @@
 | GET | `/chefs/:id` | Chefs details |
 | GET | `/profile/:id` | User`s profile |
 | GET | `/recipes/:id` | Recipe edit from render |
-| POSt | `/recipes/:id` | Recipe edit from handler |
+| POST | `/recipes/:id` | Recipe edit from handler |
 | GET | `/register` | Sign up from render |
 | POST | `/register` | Sign up from handler |
 | GET | `/login` | Log in from render |
