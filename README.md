@@ -10,7 +10,12 @@
 | POST | `/create` | New chef recipe from handler |
 | GET | `/chefs` | Chefs list |
 | GET | `/chefs/:id` | Chefs details |
-| GET | `/profile/:id` | User`s profile |
+| GET | `/users` | User`s page list for Admin |
+| GET | `/profile` | User`s profile |
+| GET | `/profiles/:id` | Profile's details'  |
+| GET | `/editprofiles/:id` | Edit profile's details from render'  |
+| POST | `/editprofiles/:id` | Edit profile's details frnm handler'  |
+| POST | `/deleteprofile/:id` | Delete profile from handler'  |
 | GET | `/recipes/:id` | Recipe edit from render |
 | POST | `/recipes/:id` | Recipe edit from handler |
 | GET | `/register` | Sign up from render |
@@ -25,7 +30,8 @@
 | GET | `/chef-recipes` | Recipes list  |
 | GET | `/chef-recipes/:id`| Recipe details |
  
-
+ 
+ 
 
 
 
