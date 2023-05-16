@@ -31,6 +31,10 @@ router.get('/recipes/search', (req, res, next) => {
     res.render('recipes/recipes-search')
 })
 
+router.get('/tests', (req, res, next) => {
+    res.render('tests-h')
+})
+
 
 router.get('/recipes/:id', (req, res, next) => {
 
