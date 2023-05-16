@@ -43,4 +43,11 @@ app.use("/", chefRecipesRoutes);
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require("./error-handling")(app);
 
+//app.locals.appTitle = `movierecord`
+//app.locals.loggedUser = username popino
+//app.use((req, res, next)=>{
+// console.log("me han obligado")
+//})
+
+
 module.exports = app;
