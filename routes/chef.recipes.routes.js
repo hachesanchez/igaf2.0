@@ -7,7 +7,6 @@ const uploaderMiddleware = require('../middlewares/uploader.middleware')
 
 
 router.get("/create", isLoggedIn, checkRoles('CHEF'), (req, res, next) => {
-
     res.render('recipes/recipes-create')
 })
 

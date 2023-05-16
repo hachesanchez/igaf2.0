@@ -13,6 +13,7 @@
 <body>
 
    <nav class='navbar navbar-expand-md navbar-dark bg-dark mb-5'>
+
       <a class='navbar-brand' href='/'>IGAF_</a>
       <button class='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarSupportedContent'
          aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation'>
@@ -34,21 +35,21 @@
             </li>
 
             <li class='nav-item'>
-               <a class='nav-link' href='/chefs-recipes'>Cheffs recipes</a>
+               <a class='nav-link' href='/chefs-recipes'>Chefs recipes</a>
             </li>
-
+            {{!-- {{#if logedUser}} --}}
             <li class='nav-item'>
                <a class='nav-link' href='/profile'>Profile</a>
             </li>
+            {{!-- {{else}} --}}
             <li class='nav-item'>
                <a class='nav-link' href='/users'>Users List</a>
             </li>
+            {{!-- {{/if}} --}}
             <li class='nav-item'>
                <a class='nav-link' href='/tests'>TESTS-H</a>
             </li>
-            <li class='nav-item'>
-               <a class='nav-link' href='/api/places'>API endpoint</a>
-            </li>
+
             <li class="nav-item">
                <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
                   <ul class="navbar-nav">
@@ -65,16 +66,16 @@
                   </ul>
                </div>
 
-
             <li class="nav-item">
                <form action="/logout" method="POST">
                   <button class="nav-link">LogOut</button>
                </form>
             </li>
+
          </ul>
       </div>
-   </nav>
 
+   </nav>
 
    {{{body}}}
 
