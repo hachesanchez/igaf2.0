@@ -3,6 +3,7 @@ const { isLoggedIn, isLoggedOut, checkRoles, checkOwner } = require('../middlewa
 //const User = require('../models/User.model')
 const Recipe = require('../models/Recipe.model')
 const router = express.Router()
+const uploaderMiddleware = require('../middlewares/uploader.middleware')
 
 
 router.get("/create", isLoggedIn, checkRoles('CHEF'), (req, res, next) => {
@@ -10,9 +11,11 @@ router.get("/create", isLoggedIn, checkRoles('CHEF'), (req, res, next) => {
     res.render('recipes/recipes-create')
 })
 
-router.post("/create", isLoggedIn, checkRoles('CHEF'), (req, res, next) => {
+router.post("/create", isLoggedIn, checkRoles('CHEF'), uploaderMiddleware.single('image'), (req, res, next) => {
 
-    const { title, cookingTime, servings, image, instructions, amount, name } = req.body
+
+    const { title, cookingTime, servings, instructions, amount, name, diets } = req.body
+    const { path: image } = req.file
     const ingredients = []
     for (let i = 0; i < amount.length; i++) {
         let singleIgt = {
@@ -22,10 +25,10 @@ router.post("/create", isLoggedIn, checkRoles('CHEF'), (req, res, next) => {
         ingredients.push(singleIgt)
     }
 
-    // res.send({ title, image, instructions, ingredients })
+
 
     Recipe
-        .create({ title, cookingTime, servings, image, instructions, ingredients })
+        .create({ title, cookingTime, servings, image, instructions, ingredients, diets })
         //.then(response => res.redirect(`/recipes/${response.data.id}`))
         .then(() => res.redirect('/'))
         .catch(err => next(err))
@@ -33,7 +36,7 @@ router.post("/create", isLoggedIn, checkRoles('CHEF'), (req, res, next) => {
 
 ///parte a partir de aqui 
 
-router.get("/chefs-recipes", (req, res, next) => {
+router.get("/chefs-recipes", isLoggedIn, (req, res, next) => {
 
 
     Recipe
@@ -48,12 +51,13 @@ router.get("/chefs-recipes", (req, res, next) => {
 
 router.get('/chefs-recipes/:id', isLoggedIn, (req, res, next) => {
     const { id } = req.params
-    const userRole = {
-        isPM: req.session.currentUser?.role === 'PM'
-    }
-    User
+    // const userRole = {
+    //     isUser: req.session.currentUser?.role === 'USER',
+    //     isChef: req.session.currentUser?.role === 'CHEF'
+    // }
+    Recipe
         .findById(id)
-        .then(users => res.render('students/students-details', { users, userRole }))
+        .then(chefcipes => res.render('recipes/chef-recipes-details', { chefcipes }))
         .catch(err => console.log(err))
 })
 
@@ -61,3 +65,21 @@ module.exports = router;
 
 
 
+
+
+// EDIT RECIPE
+// if(req.file){
+
+//     const { path: image } = req.file
+//     const { title, cookingTime, servings, instructions, amount, name, diets } = req.body
+
+//     User
+//         .findByIdAndUpdate(id, title, cookingTime, servings, instructions,image, amount, name, diets)
+//     .then(blablabla)
+//     .catch(blablalba)
+// }else{
+//     User
+//         .findByIdAndUpdate(id, title, cookingTime, servings, instructions, amount, name, diets)
+//         .then(blablabla)
+//         .catch(blablalba)
+// }

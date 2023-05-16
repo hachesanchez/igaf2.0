@@ -5,7 +5,7 @@ const recipeSchema = new Schema(
         title: {
             type: String,
             required: true,
-            // unique: true,
+            //unique: true,
             trim: true
         },
         cookingTime: {
@@ -36,7 +36,13 @@ const recipeSchema = new Schema(
         }],
         owner: {
             type: Schema.Types.ObjectId,
-            ref: 'User'
+            ref: 'User',
+            trim: true
+        },
+        diets: {
+            type: String,
+            required: true,
+            trim: true
         }
     },
     {
