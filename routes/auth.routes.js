@@ -5,7 +5,6 @@ const saltRounds = 10
 const User = require('../models/User.model')
 
 
-
 // MIDDLEWARES
 
 
@@ -22,7 +21,6 @@ router.post('/register', (req, res, next) => {
         .then(createdUser => res.redirect('/'))
         .catch(error => next(error))
 })
-
 
 
 // Login
@@ -49,16 +47,10 @@ router.post('/login', (req, res, next) => {
 })
 
 
-
 // Logout
 router.post('/logout', (req, res, next) => {
     req.session.destroy(() => res.redirect('/login'))
 })
-
-
-
-
-
 
 
 

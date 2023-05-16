@@ -5,7 +5,7 @@
 
             <h1>New Recipe</h1>
             <hr>
-            <form action="/recipes/create" method="POST">
+            <form action="/create" method="POST">
                 <div class="row">
                     <div class="col">
                         <div class="mb-3">
@@ -22,6 +22,16 @@
                 </div>
 
                 <div class="mb-3">
+                    <label for="cookingTime" class="form-label">Cooking Time</label>
+                    <input type="text" class="form-control" id="cookingTime" name="cookingTime">
+                </div>
+
+                <div class="mb-3">
+                    <label for="servings" class="form-label">Servings</label>
+                    <input type="text" class="form-control" id="servings" name="servings">
+                </div>
+
+                <div class="mb-3">
                     <label for="instructions" class="form-label">instructions</label>
                     <input type="text" class="form-control" id="instructions" name="instructions">
                 </div>
@@ -34,6 +44,7 @@
                             <input type="text" class="form-control" placeholder="Amount" name="amount">
                             <input type="text" class="form-control" placeholder="Name" name="name">
                         </div>
+
 
                     </div>
                     <button type="button" id="addIngredient" class="btn btn-success add-ingredient-input">Add
