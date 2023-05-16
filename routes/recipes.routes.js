@@ -18,6 +18,12 @@ router.get('/recipes', (req, res, next) => {
 })
 
 
+router.get('/recipes/search', (req, res, next) => {
+    // res.send("HELO");
+    res.render('recipes/recipes-search')
+})
+
+
 router.get('/recipes/:id', (req, res, next) => {
 
     const { id } = req.params
@@ -29,12 +35,16 @@ router.get('/recipes/:id', (req, res, next) => {
             res.render('recipes/recipes-details', { recipe: response.data })
         })
         .catch(err => next(err))
-
 })
 
 
+<<<<<<< HEAD
+
+
+=======
 
 //chef-routes
+>>>>>>> 927418440f00a2c7beb55b960bd2f18deaa5aee8
 
 
 
