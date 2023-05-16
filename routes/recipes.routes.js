@@ -26,7 +26,7 @@ router.get('/recipes', (req, res, next) => {
     }
 })
 
-
+//fernando mamahuevo
 router.get('/recipes/search', (req, res, next) => {
     res.render('recipes/recipes-search')
 })
