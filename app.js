@@ -35,6 +35,9 @@ const recipesRoutes = require("./routes/recipes.routes");
 app.use("/", recipesRoutes);
 
 
+const chefRecipesRoutes = require("./routes/chef.recipes.routes");
+app.use("/", chefRecipesRoutes);
+
 
 
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes

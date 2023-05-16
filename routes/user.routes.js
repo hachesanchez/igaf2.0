@@ -1,11 +1,16 @@
-const express = require("express").Router()
-
+const router = require("express").Router()
 const { findById } = require("../models/User.model")
 const User = require('../models/User.model')
-
-// user profile
-router.get("user/:id", (req, res, next) => {
-    const { id } = req.params
+const { isLoggedIn, checkRoles } = require('../middlewares/route-ward')
+// user list for ADMIN
+router.get("/users", checkRoles('ADMIN'), (req, res, next) => {
     User
-    findById(id)
+        .find()
+        .then(user => res.render("user/list", { user }))
+        .catch()
 })
+// user profile
+router.get("/profile", (req, res, next) => {
+    res.render("user/profile", { user: req.session.currentUser })
+})
+module.exports = router
