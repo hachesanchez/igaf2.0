@@ -12,8 +12,18 @@ const projectName = "igaf";
 
 app.locals.appTitle = `${capitalize(projectName)} created with IronLauncher`;
 
+
+
+
 require('./config/session.config')(app)
+
+app.use((req, res, next) => {
+    app.locals.loggedUser = req.session.currentUser
+    next()
+})
+
 require("./routes")(app)
+
 
 const indexRoutes = require("./routes/index.routes");
 app.use("/", indexRoutes);
@@ -26,11 +36,6 @@ app.use("/", chefRecipesRoutes);
 
 require("./error-handling")(app);
 
-//app.locals.appTitle = `movierecord`
-//app.locals.loggedUser = username popino
-//app.use((req, res, next)=>{
-// console.log("me han obligado")
-//})
 
 
 module.exports = app;
