@@ -6,8 +6,8 @@
 | GET | `/` | index page |
 | GET | `/recipes` | Recipes list |
 | GET | `/recipes/:id`| Recipe details |
-| GET | `/create` | New recipe from render |
-| POST | `/create` | New recipe from handler |
+| GET | `/create` | New chef recipe from render |
+| POST | `/create` | New chef recipe from handler |
 | GET | `/chefs` | Chefs list |
 | GET | `/chefs/:id` | Chefs details |
 | GET | `/profile/:id` | User`s profile |
@@ -19,8 +19,12 @@
 | POST | `/login` | Log in from handler |
 | POST | `/logout` | Log out from handler |
 
-| GET | `/recipe/buscar` | Recipe search from render |
+| GET | `/recipe/search` | Recipe search from render |
 | POST | `/recipes` | Recipe search from handler |
+
+| GET | `/chef-recipes` | Recipes list  |
+| GET | `/chef-recipes/:id`| Recipe details |
+ 
 
 
 

@@ -1,9 +1,3 @@
-//RUTAS
-
-router.get('/recipes/buscar', (req, res) => {
-    res.render('recipes/recipe-search');
-});
-
 
 
 //VISTA DE HBS RECIPE-SEARCH
@@ -49,9 +43,25 @@ router.get('/recipes', (req, res, next) => {
 
 
 
+
+//TESTEO
+
+router.get('/recipes', (req, res, next) => {
+    // res.send("HOAISDOAKSODAOSDKOASKD")
+    recipeApiHandler
+        .getAllRecipes()
+        .then(response => {
+            // console.log(response.data.results)
+            res.render('recipes/recipes-list', { recipes: response.data.results })
+        })
+        .catch(err => next(err))
+});
+
+
+
 //RECIPE-LIST
 
-<div class="container">
+< div class="container" >
     <h1>Recetas super chulis</h1>
 
     <div class="row">
@@ -85,4 +95,5 @@ router.get('/recipes', (req, res, next) => {
         </div>
         {{/ each}}
     </div>
-</div>
+</div >
+
