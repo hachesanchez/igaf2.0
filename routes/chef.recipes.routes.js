@@ -11,9 +11,10 @@ router.get("/recipes/create", isLoggedIn, checkRoles('CHEF'), (req, res, next) =
 })
 
 router.post("/recipes/create", isLoggedIn, checkRoles('CHEF'), (req, res, next) => {
-    console.log(req.body)
 
-    const { title, image, instructions, ingredients } = req.body
+    const { title, image, instructions, amount, name } = req.body
+    const ingredients = [{ amount }, { name }]
+    // res.send({ title, image, instructions, ingredients })
 
     Recipe
         .create({ title, image, instructions, ingredients })
