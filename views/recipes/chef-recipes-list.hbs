@@ -1,0 +1,25 @@
+<div class="container">
+    <h1>The selection of our chefs</h1>
+
+
+    <div class="row">
+
+        {{#each chefcipes}}
+
+        <div class=" card col-3 mt-2">
+
+            <div>
+                <img class="card-img-top" src="{{image}}" alt="profile-pic">
+            </div>
+
+            <div class="card-body" style="color: black;">
+                <h5 class="card-title"><strong>{{title}}</strong> </h5>
+                <a href="/chefs-recipes/{{id}}" class="btn btn-outline-dark btn-sm">View cheff recipes</a>
+
+            </div>
+
+        </div>
+
+        {{/each}}
+    </div>
+</div>

@@ -38,13 +38,8 @@ router.get('/recipes/:id', (req, res, next) => {
 })
 
 
-<<<<<<< HEAD
 
 
-=======
-
-//chef-routes
->>>>>>> 927418440f00a2c7beb55b960bd2f18deaa5aee8
 
 
 
