@@ -19,6 +19,9 @@
 | POST | `/login` | Log in from handler |
 | POST | `/logout` | Log out from handler |
 
+| GET | `/recipe/buscar` | Recipe search from render |
+| POST | `/recipes` | Recipe search from handler |
+
 
 
 

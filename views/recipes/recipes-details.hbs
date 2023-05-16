@@ -16,12 +16,18 @@
 
             <h1 class="mt-6">{{recipe.title}}</h1>
 
-            <div class="facts-table">
-                <h2 class="mt-4"><strong>Facts:</strong></h2>
-
-                <p> Ready in: {{recipe.readyInMinutes}} minutes</p>
-                <p> Servings: {{recipe.servings}}</p>
-                <p> Diets: {{recipe.diets}}</p>
+            <div class="col-md-6">
+                <div class="facts-table">
+                    <h2 class="mt-4"><strong>Facts:</strong></h2>
+                    <hr>
+                </div>
+                <div class="col-md-6">
+                    <p> Ready in: {{recipe.readyInMinutes}} minutes</p>
+                    <hr>
+                    <p> Servings: {{recipe.servings}}</p>
+                    <hr>
+                    <p> Diets: {{recipe.diets}}</p>
+                </div>
             </div>
 
             <div class="instructions mt-5">

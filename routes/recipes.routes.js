@@ -18,6 +18,12 @@ router.get('/recipes', (req, res, next) => {
 })
 
 
+router.get('/recipes/search', (req, res, next) => {
+    // res.send("HELO");
+    res.render('recipes/recipes-search')
+})
+
+
 router.get('/recipes/:id', (req, res, next) => {
 
     const { id } = req.params
@@ -29,8 +35,12 @@ router.get('/recipes/:id', (req, res, next) => {
             res.render('recipes/recipes-details', { recipe: response.data })
         })
         .catch(err => next(err))
-
 })
+
+
+
+
+
 
 
 module.exports = router;
