@@ -25,13 +25,9 @@ router.get('/recipes', (req, res, next) => {
             .catch(err => next(err))
     }
 })
-
-
 router.get('/recipes/search', (req, res, next) => {
     res.render('recipes/recipes-search')
 })
-
-
 router.get('/recipes/:id', (req, res, next) => {
 
     const { id } = req.params
@@ -44,7 +40,6 @@ router.get('/recipes/:id', (req, res, next) => {
         })
         .catch(err => next(err))
 })
-
 
 
 module.exports = router;
