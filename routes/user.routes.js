@@ -1,6 +1,8 @@
 const router = require("express").Router()
 const { findById } = require("../models/User.model")
+const { populate } = require("../models/Recipe.model")
 const User = require('../models/User.model')
+const Recipe = require('../models/Recipe.model')
 const { isLoggedIn, checkRoles } = require('../middlewares/route-ward')
 
 
@@ -15,7 +17,12 @@ router.get("/users", checkRoles('ADMIN'), (req, res, next) => {
 
 // USER PROFILE
 router.get("/profile", (req, res, next) => {
-    res.render("user/profile", { user: req.session.currentUser })
+    const userId = req.session.currentUser._id
+    User
+        .findById(userId)
+        .populate('recipes')
+        .then(user => { res.send(user) })
+        .catch(err => console.log(err))
 })
 
 
