@@ -4,7 +4,7 @@ const User = require('../models/User.model')
 const { isLoggedIn, checkRoles } = require('../middlewares/route-ward')
 
 
-// user list for ADMIN
+// USER LIST ADMIN
 router.get("/users", checkRoles('ADMIN'), (req, res, next) => {
     User
         .find()

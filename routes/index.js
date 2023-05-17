@@ -8,17 +8,21 @@ module.exports = app => {
     const authRouter = require("./auth.routes");
     app.use("/", authRouter);
 
-    // Recipe Routes
+    // Recipes Routes
     const recipeRouter = require("./recipes.routes");
     app.use("/", recipeRouter)
 
-    // User Routes
-    const userRouter = require("./user.routes");
-    app.use("/", userRouter)
+    // Chefs Recipes Routes
+    const chefRecipesRouter = require("./chef.recipes.routes");
+    app.use("/", chefRecipesRouter)
 
     // Chefs Routes
     const chefsRouter = require("./chefs.routes");
     app.use("/", chefsRouter)
+
+    // User Routes
+    const userRouter = require("./user.routes");
+    app.use("/", userRouter)
 
 
 }

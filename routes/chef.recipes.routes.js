@@ -6,12 +6,12 @@ const router = express.Router()
 const uploaderMiddleware = require('../middlewares/uploader.middleware')
 
 
-router.get("/create", isLoggedIn, checkRoles('CHEF'), (req, res, next) => {
+router.get("/create", isLoggedIn, checkRoles('CHEF', 'ADMIN'), (req, res, next) => {
     res.render('recipes/recipes-create')
 })
 
 
-router.post("/create", isLoggedIn, checkRoles('CHEF'), uploaderMiddleware.single('image'), (req, res, next) => {
+router.post("/create", isLoggedIn, checkRoles('CHEF', 'ADMIN'), uploaderMiddleware.single('image'), (req, res, next) => {
 
     const { title, cookingTime, servings, instructions, amount, name, diets } = req.body
     const { path: image } = req.file

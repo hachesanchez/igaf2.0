@@ -10,8 +10,9 @@ const User = require('../models/User.model')
 
 // Sign up
 router.get('/register', (req, res, next) => res.render('auth/signup'))
-router.post('/register', (req, res, next) => {
-    const { userName, email, userPwd, role, profileImage, description } = req.body
+router.post('/register', uploaderMiddleware.single('profileImage'), (req, res, next) => {
+    const { userName, email, userPwd, role, description } = req.body
+    const { path: profileImage } = req.file
 
     bcrypt
         .genSalt(saltRounds)

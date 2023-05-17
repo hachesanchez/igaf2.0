@@ -20,18 +20,18 @@
       </button>
       <div class='collapse navbar-collapse' id='navbarSupportedContent'>
          <ul class='navbar-nav ml-auto'>
-            {{#if logedUser}}
+            {{!-- {{#if logedUser}} --}}
             <li class='nav-item'>
                <a class='nav-link' href='/recipes'>Recipes</a>
             </li>
-            {{else}}
+            {{!-- {{else}} --}}
 
             <li class='nav-item'>
                <a class='nav-link' href='/create'>Create recipes</a>
             </li>
-            {{/if}}
-
-            {{#if logedUser}}
+            {{!-- {{/if}} --}}
+            {{!--
+            {{#if logedUser}} --}}
             <li class='nav-item'>
                <a class='nav-link' href='/chefs'>Chefs</a>
             </li>
@@ -43,7 +43,7 @@
             <li class='nav-item'>
                <a class='nav-link' href='/profile'>Profile</a>
             </li>
-            {{/if}}
+            {{!-- {{/if}} --}}
             <li class='nav-item'>
                <a class='nav-link' href='/users'>Users List</a>
             </li>

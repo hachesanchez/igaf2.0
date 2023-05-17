@@ -1,36 +1,27 @@
-<h1>CHEFS LIST</h1>
+<body class="chefs-list">
 
-<div class="container">
-    <h1>Our chefs</h1>
+    <div class="container">
+        <h1>Our chefs</h1>
 
-    <div class="row">
+        <h2>ALGO POR AQUÍ?</h2>
 
-        {{#each chef}}
+        <div class="row">
+            {{userName}}
 
-        <div class=" card col-3 mt-2">
+            {{#each chefs}}
 
-            <div>
-                <img class="card-img-top" src="{{profileImage}}" alt="profile-pic">
+            <div class="col-3 mt-2">
+                <div>
+                    <img class="card-img-top" src="{{profileImage}}" alt="profile-pic">
+                </div>
+
+                <a href="/chefs/{{id}}" class="chef-title"><strong>{{userName}}</strong></a>
+
             </div>
 
-            <div class="card-body" style="color: black;">
-                <h5 class="card-title"><strong>{{userName}}</strong> </h5>
-                <a href="/chefs-recipes/{{id}}" class="btn btn-outline-dark btn-sm">View chef</a>
-
-            </div>
+            {{/each}}
 
         </div>
 
-        {{/each}}
     </div>
-</div>
-
-
-{{!--
-//F LIST
-{{#each user}}
-<img src="{{profileImage}}" alt="">
-{{userName}}
-{{email}}
-{{role}}
-{{/each}} --}}
+</body>

@@ -42,6 +42,30 @@ h3 {
 
 
 
+/* INDEX */
+
+.index {
+  background-image: url(../images/pexels-daniela-constantini-5591666.jpg);
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  position: relative;
+  height: calc(100vh - 56px);
+}
+
+.search-bar {
+  margin-top: 350px;
+  margin-left: 800px;
+}
+
+/* .search-bar {
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 10px;
+  padding: 20px;
+} */
+
+
+
 /* RECIPES LIST */
 
 .recipe-list {
@@ -85,4 +109,30 @@ h3 {
 
 .extra-info-img {
   margin-right: 5px;
+}
+
+
+/* CHEF LIST */
+
+.chef-title {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: rgb(45, 45, 45)
+}
+
+.chef-title a {
+  text-decoration: none;
+}
+
+
+/* CHEF DETAILS */
+
+.chef-img {
+  max-width: 100%;
+}
+
+.chef-name {
+  font-size: 4em;
+  justify-content: left;
+  color: rgb(45, 45, 45)
 }
