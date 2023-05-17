@@ -5,14 +5,14 @@ const express = require("express");
 const hbs = require("hbs");
 const app = express();
 
+
 require("./config")(app);
+
 
 const capitalize = require("./utils/capitalize");
 const projectName = "igaf";
 
 app.locals.appTitle = `${capitalize(projectName)} created with IronLauncher`;
-
-
 
 
 require('./config/session.config')(app)
@@ -23,7 +23,6 @@ app.use((req, res, next) => {
 })
 
 require("./routes")(app)
-
 
 const indexRoutes = require("./routes/index.routes");
 app.use("/", indexRoutes);
