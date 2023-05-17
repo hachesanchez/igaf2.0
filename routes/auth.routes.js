@@ -10,7 +10,6 @@ const User = require('../models/User.model')
 
 // Sign up
 router.get('/register', (req, res, next) => res.render('auth/signup'))
-
 router.post('/register', (req, res, next) => {
     const { userName, email, userPwd, role, profileImage, description } = req.body
 
