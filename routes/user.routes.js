@@ -8,7 +8,7 @@ const { isLoggedIn, checkRoles } = require('../middlewares/route-ward')
 
 // USER LIST ADMIN
 router.get("/users", checkRoles('ADMIN'), (req, res, next) => {
-    
+
     User
         .find()
         .then(user => res.render("user/list", { user }))
@@ -23,7 +23,7 @@ router.get("/profile", (req, res, next) => {
         .findById(userId)
         .populate('recipes')
         .then(user => { res.send(user) })
-        .catch(err => console.log(err))
+        .catch(err => next(err))
 })
 
 
@@ -33,7 +33,7 @@ router.get("/profiles/:id", isLoggedIn, (req, res, next) => {
     User
         .findById(id)
         .then((user) => res.render("user/profileslist", { user }))
-        .catch(err => console.log(err))
+        .catch(err => next(err))
 })
 
 
