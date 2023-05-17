@@ -1,5 +1,5 @@
 const express = require('express')
-const { isLoggedIn, isLoggedOut, checkRoles, checkOwner } = require('../middlewares/route-ward')
+const { isLoggedIn, checkRoles } = require('../middlewares/route-ward')
 //const User = require('../models/User.model')
 const Recipe = require('../models/Recipe.model')
 const router = express.Router()
@@ -16,6 +16,7 @@ router.post("/create", isLoggedIn, checkRoles('CHEF', 'ADMIN'), uploaderMiddlewa
     const { title, cookingTime, servings, instructions, amount, name, diets } = req.body
     const { path: image } = req.file
     const ingredients = []
+
     for (let i = 0; i < amount.length; i++) {
         let singleIgt = {
             amount: amount[i],
@@ -31,7 +32,6 @@ router.post("/create", isLoggedIn, checkRoles('CHEF', 'ADMIN'), uploaderMiddlewa
         .catch(err => next(err))
 })
 
-///parte a partir de aqui 
 
 router.get("/chefs-recipes", isLoggedIn, (req, res, next) => {
 
@@ -40,22 +40,19 @@ router.get("/chefs-recipes", isLoggedIn, (req, res, next) => {
         .then(chefcipes => {
             res.render('recipes/chef-recipes-list', { chefcipes })
         })
-        .catch(err => console.log(err))
+        .catch(err => next(err))
 
 })
 
 
 router.get('/chefs-recipes/:id', isLoggedIn, (req, res, next) => {
+
     const { id } = req.params
-    // const userRole = {
-    //     isUser: req.session.currentUser?.role === 'USER',
-    //     isChef: req.session.currentUser?.role === 'CHEF',
-    //     isAdmin: req.session.curentUser?.role === 'ADMIN'
-    // }
+
     Recipe
         .findById(id)
         .then(chefcipes => res.render('recipes/chef-recipes-details', { chefcipes }))
-        .catch(err => console.log(err))
+        .catch(err => next(err))
 })
 
 module.exports = router;

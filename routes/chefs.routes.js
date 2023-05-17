@@ -6,19 +6,18 @@ const router = express.Router()
 
 
 
-router.get("/chefs", (req, res, next) => {
+router.get("/", (req, res, next) => {
 
     User
         .find({ role: "CHEF" })
         .then(chefs =>
-            //res.send({ chefs })
             res.render("chefs/chefs-list", { chefs })
         )
         .catch((err) => console.log(err));
 });
 
 
-router.get("/chefs/:id", (req, res, next) => {
+router.get("/:id", (req, res, next) => {
 
     const { id } = req.params
 
@@ -27,11 +26,6 @@ router.get("/chefs/:id", (req, res, next) => {
         .then(chefs => res.render("chefs/chefs-details", { chefs }))
         .catch((err) => console.log(err));
 });
-
-
-
-
-
 
 
 module.exports = router;
