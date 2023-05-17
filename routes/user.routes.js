@@ -8,6 +8,7 @@ const { isLoggedIn, checkRoles } = require('../middlewares/route-ward')
 
 // USER LIST ADMIN
 router.get("/users", checkRoles('ADMIN'), (req, res, next) => {
+    
     User
         .find()
         .then(user => res.render("user/list", { user }))

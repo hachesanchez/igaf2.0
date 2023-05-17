@@ -49,7 +49,8 @@ router.get('/chefs-recipes/:id', isLoggedIn, (req, res, next) => {
     const { id } = req.params
     // const userRole = {
     //     isUser: req.session.currentUser?.role === 'USER',
-    //     isChef: req.session.currentUser?.role === 'CHEF'
+    //     isChef: req.session.currentUser?.role === 'CHEF',
+    //     isAdmin: req.session.curentUser?.role === 'ADMIN'
     // }
     Recipe
         .findById(id)
