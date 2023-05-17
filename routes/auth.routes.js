@@ -5,10 +5,6 @@ const uploaderMiddleware = require('../middlewares/uploader.middleware')
 const User = require('../models/User.model')
 
 
-// MIDDLEWARES
-
-
-// Sign up
 router.get('/register', (req, res, next) => res.render('auth/signup'))
 
 router.post('/register', uploaderMiddleware.single('profileImage'), (req, res, next) => {
@@ -24,7 +20,6 @@ router.post('/register', uploaderMiddleware.single('profileImage'), (req, res, n
 })
 
 
-// Login
 router.get('/login', (req, res, next) => res.render('auth/login'))
 
 router.post('/login', (req, res, next) => {
@@ -49,7 +44,7 @@ router.post('/login', (req, res, next) => {
 })
 
 
-// Logout
+
 router.post('/logout', (req, res, next) => {
     req.session.destroy(() => res.redirect('/login'))
 })

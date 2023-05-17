@@ -56,3 +56,20 @@
         </div>
     </div>
 </div>
+
+
+
+
+
+router.get('/', (req, res, next) => {
+
+const { ingredients } = req.query
+
+const promise = ingredients ? recipeApiHandler.searchByIngredient(ingredients) : recipeApiHandler.getAllRecipes()
+
+promise
+.then(response => {
+res.render('recipes/recipes-list', { recipes: response.data })
+})
+.catch(err => next(err))
+})

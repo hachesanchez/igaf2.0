@@ -1,29 +1,32 @@
-
 const axios = require("axios")
 
 class RecipeApiHandler {
 
     constructor() {
+
         this.axiosApp = axios.create({
-            baseURL: "https://api.spoonacular.com"
+            baseURL: "https://api.spoonacular.com/recipes",
         })
+
+        this.params = {
+            apiKey: process.env.API_KEY_RECIPE
+        }
     }
 
 
     getAllRecipes() {
-        return this.axiosApp.get(`/recipes/complexSearch?number=150&apiKey=${process.env.API_KEY_RECIPE}`)
+        return this.axiosApp.get(`/complexSearch?number=150`, { params: this.params })
     }
 
     getOneRecipe(recipeId) {
-        return this.axiosApp.get(`/recipes/${recipeId}/information?apiKey=${process.env.API_KEY_RECIPE}`)
+        return this.axiosApp.get(`/${recipeId}/information`, { params: this.params })
     }
 
     searchByIngredient(ingredient) {
-        return this.axiosApp.get(`/recipes/findByIngredients?ingredients=${ingredient}&apiKey=${process.env.API_KEY_RECIPE}`)
+        return this.axiosApp.get(`/findByIngredients?ingredients=${ingredient}`, { params: this.params })
     }
 
 }
-
 
 const recipeApiHandler = new RecipeApiHandler()
 
