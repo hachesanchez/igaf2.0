@@ -1,33 +1,22 @@
 const router = require("express").Router();
-const axios = require("axios");
 const recipeApiHandler = require('../services/recipes-api.service');
-const { response } = require("express");
 
 
+router.get('/', (req, res, next) => {
 
-router.get('/recipes', (req, res, next) => {
+    const { ingredients } = req.query
 
-    const { ingredients } = req.query;
+    const promise = ingredients ? recipeApiHandler.searchByIngredient(ingredients) : recipeApiHandler.getAllRecipes()
 
-    if (ingredients) {
-        recipeApiHandler
-            .searchByIngredient(ingredients)
-            .then(response => {
-                res.render('recipes/recipes-list', { recipes: response.data })
-            })
-            .catch(err => next(err))
-    } else {
-        recipeApiHandler
-            .getAllRecipes()
-            .then(response => {
-                res.render('recipes/recipes-list', { recipes: response.data.results })
-            })
-            .catch(err => next(err))
-    }
+    promise
+        .then(({ data }) => {
+            res.render('recipes/recipes-list', { recipes: data.results ? data.results : data })
+        })
+        .catch(err => next(err))
 })
 
 
-router.get('/recipes/search', (req, res, next) => {
+router.get('/search', (req, res, next) => {
     res.render('recipes/recipes-search')
 })
 
@@ -37,14 +26,13 @@ router.get('/tests', (req, res, next) => {
 })
 
 
-router.get('/recipes/:id', (req, res, next) => {
+router.get('/:id', (req, res, next) => {
 
     const { id } = req.params
 
     recipeApiHandler
         .getOneRecipe(id)
         .then(response => {
-            console.log(response.data.results)
             res.render('recipes/recipes-details', { recipe: response.data })
         })
         .catch(err => next(err))
