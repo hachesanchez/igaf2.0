@@ -25,12 +25,12 @@
                <a class='nav-link' href='/recipes'>Recipes</a>
             </li>
 
-
+            {{#if loggedUser.isChef}}
             <li class='nav-item'>
                <a class='nav-link' href='/create'>Create recipes</a>
             </li>
+            {{/if}}
 
-            {{#if logedUser}}
             <li class='nav-item'>
                <a class='nav-link' href='/chefs'>Chefs</a>
             </li>
@@ -38,19 +38,17 @@
             <li class='nav-item'>
                <a class='nav-link' href='/chefs-recipes'>Chefs recipes</a>
             </li>
-
+            {{#if loggedUser.user}}
             <li class='nav-item'>
                <a class='nav-link' href='/profile'>Profile</a>
             </li>
             {{/if}}
+            {{#if loggedUser.isAdmin}}
             <li class='nav-item'>
                <a class='nav-link' href='/users'>Users List</a>
             </li>
-            {{!-- {{/if}} --}}
-            <li class='nav-item'>
-               <a class='nav-link' href='/tests'>TESTS-H</a>
-            </li>
-
+            {{/if}}
+            {{#unless loggedUser.user}}
             <li class="nav-item">
                <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
                   <ul class="navbar-nav">
@@ -66,14 +64,16 @@
                      </li>
                   </ul>
                </div>
-               {{!-- {{#if logedUser}} --}}
+            </li>
+            {{/unless}}
+
+            {{#if loggedUser.user}}
             <li class="nav-item">
                <form action="/logout" method="POST">
                   <button class="nav-link">LogOut</button>
                </form>
             </li>
-            {{!-- {{/if}} --}}
-
+            {{/if}}
          </ul>
       </div>
 

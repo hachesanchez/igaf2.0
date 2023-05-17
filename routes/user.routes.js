@@ -5,6 +5,7 @@ const { isLoggedIn, checkRoles } = require('../middlewares/route-ward')
 
 // user list for ADMIN
 router.get("/users", checkRoles('ADMIN'), (req, res, next) => {
+    
     User
         .find()
         .then(user => res.render("user/list", { user }))
@@ -13,6 +14,11 @@ router.get("/users", checkRoles('ADMIN'), (req, res, next) => {
 
 // user profile
 router.get("/profile", (req, res, next) => {
+    // const userRole = {
+    //     isUser: req.session.currentUser?.role === 'USER',
+    //     isChef: req.session.currentUser?.role === 'CHEF',
+    //     isAdmin: req.session.curentUser?.role === 'ADMIN'
+    // }
     res.render("user/profile", { user: req.session.currentUser })
 })
 

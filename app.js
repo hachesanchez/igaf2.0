@@ -4,7 +4,7 @@ require("./db");
 const express = require("express");
 const hbs = require("hbs");
 const app = express();
-
+const { checkRoleInLayout } = require("./middlewares/current-user-ware")
 require("./config")(app);
 
 const capitalize = require("./utils/capitalize");
@@ -14,13 +14,9 @@ app.locals.appTitle = `${capitalize(projectName)} created with IronLauncher`;
 
 require('./config/session.config')(app)
 
-app.use((req, res, next) => {
-    app.locals.loggedUser = req.session.currentUser
-    next()
-})
+app.use(checkRoleInLayout)
 
 require("./routes")(app)
-
 
 const indexRoutes = require("./routes/index.routes");
 app.use("/", indexRoutes);
