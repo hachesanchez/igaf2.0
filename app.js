@@ -12,9 +12,6 @@ const projectName = "igaf";
 
 app.locals.appTitle = `${capitalize(projectName)} created with IronLauncher`;
 
-
-
-
 require('./config/session.config')(app)
 
 app.use((req, res, next) => {

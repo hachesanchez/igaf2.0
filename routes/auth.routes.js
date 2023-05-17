@@ -11,14 +11,15 @@ const User = require('../models/User.model')
 // Sign up
 router.get('/register', (req, res, next) => res.render('auth/signup'))
 
-const { userName, email, userPwd, role, profileImage, description } = req.body
+router.post('/register', (req, res, next) => {
+    const { userName, email, userPwd, role, profileImage, description } = req.body
 
-bcrypt
-    .genSalt(saltRounds)
-    .then(salt => bcrypt.hash(userPwd, salt))
-    .then(hashedPassword => User.create({ email, userName, profileImage, role, description, password: hashedPassword }))
-    .then(createdUser => res.redirect('/'))
-    .catch(error => next(error))
+    bcrypt
+        .genSalt(saltRounds)
+        .then(salt => bcrypt.hash(userPwd, salt))
+        .then(hashedPassword => User.create({ email, userName, profileImage, role, description, password: hashedPassword }))
+        .then(createdUser => res.redirect('/'))
+        .catch(error => next(error))
 })
 
 
