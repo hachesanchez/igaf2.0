@@ -10,8 +10,8 @@ router.get("/create", isLoggedIn, checkRoles('CHEF'), (req, res, next) => {
     res.render('recipes/recipes-create')
 })
 
-router.post("/create", isLoggedIn, checkRoles('CHEF'), uploaderMiddleware.single('image'), (req, res, next) => {
 
+router.post("/create", isLoggedIn, checkRoles('CHEF'), uploaderMiddleware.single('image'), (req, res, next) => {
 
     const { title, cookingTime, servings, instructions, amount, name, diets } = req.body
     const { path: image } = req.file
@@ -24,8 +24,6 @@ router.post("/create", isLoggedIn, checkRoles('CHEF'), uploaderMiddleware.single
         ingredients.push(singleIgt)
     }
 
-
-
     Recipe
         .create({ title, cookingTime, servings, image, instructions, ingredients, diets })
         //.then(response => res.redirect(`/recipes/${response.data.id}`))
@@ -36,7 +34,6 @@ router.post("/create", isLoggedIn, checkRoles('CHEF'), uploaderMiddleware.single
 ///parte a partir de aqui 
 
 router.get("/chefs-recipes", isLoggedIn, (req, res, next) => {
-
 
     Recipe
         .find()

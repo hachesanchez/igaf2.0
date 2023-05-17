@@ -32,7 +32,11 @@ const userSchema = new Schema(
       type: String,
       required: true,
       default: 'No existe descripción.'
-    }
+    },
+    recipes: [{
+      type: Schema.Types.ObjectId,
+      ref: 'Recipe'
+    }]
   },
   {
     timestamps: true

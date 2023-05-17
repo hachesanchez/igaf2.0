@@ -1,7 +1,10 @@
 const router = require("express").Router()
 const { findById } = require("../models/User.model")
+const { populate } = require("../models/Recipe.model")
 const User = require('../models/User.model')
+const Recipe = require('../models/Recipe.model')
 const { isLoggedIn, checkRoles } = require('../middlewares/route-ward')
+
 
 // user list for ADMIN
 router.get("/users", checkRoles('ADMIN'), (req, res, next) => {
@@ -12,17 +15,19 @@ router.get("/users", checkRoles('ADMIN'), (req, res, next) => {
         .catch(err => console.log(err))
 })
 
-// user profile
+
+// USER PROFILE
 router.get("/profile", (req, res, next) => {
-    // const userRole = {
-    //     isUser: req.session.currentUser?.role === 'USER',
-    //     isChef: req.session.currentUser?.role === 'CHEF',
-    //     isAdmin: req.session.curentUser?.role === 'ADMIN'
-    // }
-    res.render("user/profile", { user: req.session.currentUser })
+    const userId = req.session.currentUser._id
+    User
+        .findById(userId)
+        .populate('recipes')
+        .then(user => { res.send(user) })
+        .catch(err => console.log(err))
 })
 
-// list of users profiles
+
+// USER PROFILE LIST
 router.get("/profiles/:id", isLoggedIn, (req, res, next) => {
     const { id } = req.params
     User
@@ -31,7 +36,8 @@ router.get("/profiles/:id", isLoggedIn, (req, res, next) => {
         .catch(err => console.log(err))
 })
 
-// edit user profiles
+
+// EDIT USER PROFILES
 router.get("/editprofiles/:id", (req, res, next) => {
     const { id } = req.params
     User
@@ -49,7 +55,8 @@ router.post("/editprofiles/:id", (req, res, next) => {
         .catch(err => console.log(err))
 })
 
-// delete User profile
+
+// DELETE USER PROFILE
 router.post("/deleteprofile/:id", (req, res, next) => {
     const { id } = req.params
     User

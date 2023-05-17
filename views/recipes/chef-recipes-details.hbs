@@ -3,12 +3,14 @@
 
         <div class="col-md-5 mt-6">
             <img src="{{chefcipes.image}}" alt="{{chefcipes.title}}" style="width: 100%">
-            <h3 class="mt-4"><strong>Ingredients:</strong></h3>
-            <ul>
-                {{#each chefcipes.ingredients}}
-                <li>{{name}} - {{amount}} {{unit}}</li>
-                {{/each}}
-            </ul>
+            <div class="ingredient-box">
+                <h3 class="mt-4"><strong>Ingredients:</strong></h3>
+                <ul>
+                    {{#each chefcipes.ingredients}}
+                    <li>{{name}} - {{amount}} {{unit}}</li>
+                    {{/each}}
+                </ul>
+            </div>
         </div>
 
         <div class="col-md-6">
@@ -18,9 +20,9 @@
             <div class="col-md-6">
                 <div class="facts-table">
                     <h2 class="mt-4"><strong>Facts:</strong></h2>
-                    <hr>
                 </div>
                 <div class="col-md-6">
+                    <hr>
                     <p> Ready in: {{chefcipes.readyInMinutes}} minutes</p>
                     <hr>
                     <p> Servings: {{chefcipes.servings}}</p>

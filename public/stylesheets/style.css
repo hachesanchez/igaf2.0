@@ -1,7 +1,8 @@
 body {
   font-weight: 200;
   font-family: sans-serif;
-  margin-top: 100px;
+  padding-top: 100px;
+  padding-bottom: 50px;
 }
 
 h1 {
@@ -9,9 +10,9 @@ h1 {
   color: rgb(151, 143, 227);
 }
 
-h1 {
-  font-weight: bold;
-  color: rgb(151, 143, 227);
+h2 {
+  font-weight: 200;
+  color: rgb(53, 53, 53);
 }
 
 h3 {
@@ -42,7 +43,6 @@ h3 {
 
 
 /* RECIPES LIST */
-
 
 .recipe-list {
   display: block;
@@ -76,7 +76,13 @@ h3 {
   padding-left: 40px;
 }
 
-.section {
-  margin-top: 100px;
+.extra-info-text {
+  margin-top: 50px;
+  margin-bottom: 50px;
+  /*  display: flex;
+  align-items: center; */
+}
 
+.extra-info-img {
+  margin-right: 5px;
 }
