@@ -34,8 +34,13 @@
                 <img class="card-img-top" src="{{image}}" alt="profile-pic">
             </div>
 
+            {{!-- {{#if owner}} <!-- Verificar si la receta tiene un propietario -->
+            <p>Chef: {{owner.userName}}</p> <!-- Mostrar el nombre del chef utilizando la referencia al modelo User -->
+            {{/if}} --}}
+
             <div class="card-body" style="color: black;">
                 <h5 class="card-title"><strong>{{title}}</strong> </h5>
+
                 <a href="/recipes/{{id}}" class="btn btn-outline-dark btn-sm">View Recipe</a>
 
             </div>
@@ -45,3 +50,5 @@
         {{/each}}
     </div>
 </div>
+
+{{!-- AGREGAR UN BUCLE PARA LAS RECETAS DE LOS CHEFS --}}

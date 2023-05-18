@@ -21,7 +21,9 @@ router.get("/profile", (req, res, next) => {
     User
         .findById(userId)
         .populate('recipes')
-        .then(user => { res.send(user) })
+        .then(user => {
+            res.render('user/profile', user)
+        })
         .catch(err => console.log(err))
 })
 
@@ -33,7 +35,7 @@ router.get("/profiles/:id", isLoggedIn, (req, res, next) => {
     User
         .findById(id)
         .then((user) => res.render("user/profileslist", { user }))
-        .catch(err => console.log(err))
+        .catch(error => next(error))
 })
 
 

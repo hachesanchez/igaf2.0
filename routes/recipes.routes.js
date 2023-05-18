@@ -1,18 +1,27 @@
 const router = require("express").Router();
 const recipeApiHandler = require('../services/recipes-api.service');
+const User = require('../models/User.model')
+const Recipe = require('../models/Recipe.model');
+const findLocalRecipes = require("../utils/findLocalRecipes");
 
 
 router.get('/recipes', (req, res, next) => {
 
     const { ingredients } = req.query
 
-    const promise = ingredients ? recipeApiHandler.searchByIngredient(ingredients) : recipeApiHandler.getAllRecipes()
+    const APIpromise = ingredients ? recipeApiHandler.searchByIngredient(ingredients) : recipeApiHandler.getAllRecipes()
+    const DBpromise = Recipe.find({ 'ingredients.name': ingredients })
+    const promises = [APIpromise, DBpromise]
 
-    promise
-        .then(({ data }) => {
-            res.render('recipes/recipes-list', { recipes: data.results ? data.results : data })
-        })
-        .catch(err => next(err))
+    Promise.all(promises).then(response => {
+
+        const APIResponse = response[0].data.results ? response[0].data.results : response[0].data
+        const DBResponse = response[1]
+
+        const recipeList = [...APIResponse, ...DBResponse]
+        res.render('recipes/recipes-list', { recipes: recipeList })
+    })
+
 })
 
 
