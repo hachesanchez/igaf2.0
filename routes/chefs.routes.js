@@ -25,7 +25,7 @@ router.get("/:id", (req, res, next) => {
         .findById(id)
         .populate('recipes')
         .then(chefs => res.render("chefs/chefs-details", { chefs }))
-        .catch(error => next(error))
+        .catch((err) => next(err));
 });
 
 

@@ -21,8 +21,10 @@ router.get("/profile", (req, res, next) => {
     User
         .findById(userId)
         .populate('recipes')
-        .then(user => { res.send(user) })
-        .catch(error => next(error))
+        .then(user => {
+            res.render('user/profile', user)
+        })
+        .catch(err => console.log(err))
 })
 
 

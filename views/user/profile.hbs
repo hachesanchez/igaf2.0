@@ -1,6 +1,24 @@
-<h1>Welcome! {{user.userName}}</h1>
-<h2>Your recipes:
-    {{#each user.recipes}}
-    {{this.title}}
-    {{/each }}
-</h2>
+<h1>Welcome! {{userName}}</h1>
+
+<div class="container">
+    <h1>Checkout your recipes!</h1>
+
+    <div class="row">
+
+        {{#each recipes}}
+
+        <div class=" card col-3 mt-2">
+
+            <div>
+                <img class="card-img-top" src="{{image}}" alt="profile-pic">
+            </div>
+
+            <div class="card-body" style="color: black;">
+                <h5 class="card-title"><strong>{{title}}</strong> </h5>
+            </div>
+
+        </div>
+
+        {{/each}}
+    </div>
+</div>
