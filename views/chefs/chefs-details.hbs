@@ -25,17 +25,17 @@
             <h2 class="mt-15">Check {{chefs.userName}}'s recipes:</h2>
             <div class=" card col-3 mt-2">
 
+                {{#each chefs.recipes}}
                 <div>
-                    <img class="card-img-top" src=")" alt="profile-pic">
+                    <img class="card-img-top" src="{{image}}" alt="profile-pic">
                 </div>
-
                 <div class="card-body" style="color: black;">
                     <a href="#" class="chef-recipe-title">
-                        <h5><strong>POLLO PEPITORIA</strong> </h5>
+                        <h5><strong>{{title}}</strong> </h5>
                     </a>
 
                 </div>
-
+                {{/each}}
             </div>
         </div>
 
