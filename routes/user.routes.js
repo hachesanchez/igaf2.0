@@ -1,6 +1,7 @@
 const router = require("express").Router()
 const User = require('../models/User.model')
 const Recipe = require('../models/Recipe.model')
+
 const { isLoggedIn, checkRoles } = require('../middlewares/route-ward')
 
 
@@ -21,6 +22,15 @@ router.get("/profile", (req, res, next) => {
     User
         .findById(userId)
         .populate('recipes')
+        .populate({
+            path: 'favRecipes',
+            /*  populate: {
+                 path: 'recipesFromApi'
+             }, */
+            populate: {
+                path: 'recipesFromMongo'
+            },
+        })
         .then(user => {
             res.render('user/profile', user)
         })
@@ -72,24 +82,23 @@ router.post("/deleteprofile/:id", (req, res, next) => {
         .catch(error => next(error))
 })
 
-router.get("/makefav/db/:id", (req, res, next) => {
+router.get("/makefav/db/:id", isLoggedIn, (req, res, next) => {
 
     const { _id: userId } = req.session.currentUser
     const { id: chefcipe } = req.params
 
     User
         .findByIdAndUpdate(userId, { $push: { favRecipes: { recipesFromMongo: chefcipe } } })
-        .then(() => res.redirect("/")) //redirect to the same page (/chef-recipes/;id)
+        .then((favRecipe) => res.redirect("/")) //redirect to the same page (/chef-recipes/;id)
         .catch(error => next(error))
 
 })
 
-router.get("/makefav/api/:id", (req, res, next) => {
+router.get("/makefav/api/:id", isLoggedIn, (req, res, next) => {
 
-    
+
     const { _id: userId } = req.session.currentUser
     const { id: recipe } = req.params
-
 
     User
         .findByIdAndUpdate(userId, { $push: { favRecipes: { recipesFromApi: recipe } } })

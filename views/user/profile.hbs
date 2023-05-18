@@ -20,26 +20,28 @@
 
             </div>
 
-
         </div>
+
 
         <div class="row mt-5">
             <h5>These are your favorite recipes:</h5>
-            {{#each recipes}}
+            {{!-- {{favRecipes}} --}}
+
+            {{#each favRecipes}}
+
+            {{!-- {{#with recipesFromMongo}} --}}
 
             <div class="col-2 mt-2">
-
                 <div>
-                    <img class="card-img-top" src="{{image}}" alt="recipe picture">
+                    <img class="card-img-top" src="{{recipesFromMongo.image}}" alt="recipe picture">
                 </div>
 
                 <div class="card-body" style="color: black;">
                     <h5 class="card-title"><strong>{{title}}</strong> </h5>
                 </div>
-
             </div>
-
             {{/each}}
+
         </div>
     </div>
 </body>

@@ -1,26 +1,29 @@
 <body class="chefs-list">
 
     <div class="container">
+
         <h1>Our chefs</h1>
 
         <div class="row">
 
-            {{userName}}
-
             {{#each chefs}}
 
-            <div class="col-3 mt-2">
-                <div>
-                    <img class="card-img-top" src="{{profileImage}}" alt="profile-pic">
+            <div class="col-md-3 mb-4 mt-5">
+
+                <div class="card" style="width: 18rem;">
+
+                    <img src="{{profileImage}}" class="card-img-top" alt="...">
+
+                    <div class="card-body">
+                        <a href="/chefs/{{id}}" class="chef-title"><strong>{{userName}}</strong></a>
+                    </div>
+
                 </div>
 
-                <a href="/chefs/{{id}}" class="chef-title"><strong>{{userName}}</strong></a>
-
             </div>
-
             {{/each}}
-
         </div>
 
     </div>
+
 </body>

@@ -43,7 +43,7 @@ const userSchema = new Schema(
         ref: 'Recipe'
       },
       recipesFromApi: {
-        type: Number
+        type: String
       }
     }]
   },
