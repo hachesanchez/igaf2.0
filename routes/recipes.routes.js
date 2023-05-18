@@ -10,7 +10,7 @@ router.get('/recipes', (req, res, next) => {
     const { ingredients } = req.query
 
     const APIpromise = ingredients ? recipeApiHandler.searchByIngredient(ingredients) : recipeApiHandler.getAllRecipes()
-    const DBpromise = Recipe.find({ 'ingredients.name': ingredients })
+    const DBpromise = ingredients ? Recipe.find({ 'ingredients.name': ingredients }) : Recipe.find()
     const promises = [APIpromise, DBpromise]
 
     Promise.all(promises).then(response => {
@@ -18,10 +18,10 @@ router.get('/recipes', (req, res, next) => {
         const APIResponse = response[0].data.results ? response[0].data.results : response[0].data
         const DBResponse = response[1]
 
-        const recipeList = [...APIResponse, ...DBResponse]
-        res.render('recipes/recipes-list', { recipes: recipeList })
+        res.render('recipes/recipes-list', { APIResponse, DBResponse })
+        // const recipeList = [...APIResponse, ...DBResponse]
+        // res.render('recipes/recipes-list', { recipes: recipeList })
     })
-
 })
 
 
