@@ -1,23 +1,40 @@
 <body class="chefs-list">
+
     <div class="container">
-        <h1>Our chefs</h1>
+
+        <h1>Registered Users</h1>
+
         <div class="row">
+
             {{#each user}}
+
             <div class="col-md-3 mb-4">
+
                 <div class="card" style="width: 18rem;">
+
                     <img src="{{profileImage}}" class="card-img-top" alt="...">
+
                     <div class="card-body">
                         <h5 class="card-title">{{userName}}</h5>
+
                         <p class="card-text">{{role}}</p>
+
                         <a href="/profiles/{{id}}" class="btn btn-secondary">Details</a>
+
                         <a href="/editprofiles/{{id}}" class="btn btn-secondary">Edit</a>
+
                         <form action="/deleteprofile/{{id}}" method="POST" style="display: inline">
+
                             <input type="submit" value="Delete" class="btn btn-secondary">
                         </form>
                     </div>
+
                 </div>
+
             </div>
             {{/each}}
         </div>
+
     </div>
+
 </body>

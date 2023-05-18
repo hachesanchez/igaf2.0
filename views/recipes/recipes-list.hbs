@@ -26,17 +26,13 @@
 
     <div class="row">
 
-        {{#each recipes}}
+        {{#each APIResponse}}
 
         <div class=" card col-3 mt-2">
 
             <div>
                 <img class="card-img-top" src="{{image}}" alt="profile-pic">
             </div>
-
-            {{!-- {{#if owner}} <!-- Verificar si la receta tiene un propietario -->
-            <p>Chef: {{owner.userName}}</p> <!-- Mostrar el nombre del chef utilizando la referencia al modelo User -->
-            {{/if}} --}}
 
             <div class="card-body" style="color: black;">
                 <h5 class="card-title"><strong>{{title}}</strong> </h5>
@@ -48,7 +44,27 @@
         </div>
 
         {{/each}}
+
+        {{#each DBResponse}}
+
+        <div class=" card col-3 mt-2">
+
+            <div>
+                <img class="card-img-top" src="{{image}}" alt="profile-pic">
+            </div>
+
+            <div class="card-body" style="color: black;">
+                <h5 class="card-title"><strong>{{title}}</strong> </h5>
+
+                <a href="/chefs-recipes/{{id}}" class="btn btn-outline-dark btn-sm">View Recipe</a>
+
+            </div>
+
+        </div>
+
+        {{/each}}
     </div>
+
 </div>
 
-{{!-- AGREGAR UN BUCLE PARA LAS RECETAS DE LOS CHEFS --}}
+</div>

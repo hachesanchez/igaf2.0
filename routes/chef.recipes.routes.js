@@ -13,7 +13,6 @@ router.get("/create", isLoggedIn, checkRoles('CHEF', 'ADMIN'), (req, res, next) 
     res.render('recipes/recipes-create')
 })
 
-//BORRA HASTA AQUI!!!!!!!!!!!!!
 router.post("/create", isLoggedIn, checkRoles('CHEF', 'ADMIN'), uploaderMiddleware.single('image'), (req, res, next) => {
 
     const { title, cookingTime, servings, instructions, amount, name, diets, likes } = req.body
