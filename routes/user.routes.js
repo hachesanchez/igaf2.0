@@ -72,5 +72,32 @@ router.post("/deleteprofile/:id", (req, res, next) => {
         .catch(error => next(error))
 })
 
+router.get("/makefav/db/:id", (req, res, next) => {
+
+    const { _id: userId } = req.session.currentUser
+    const { id: chefcipe } = req.params
+
+    User
+        .findByIdAndUpdate(userId, { $push: { favRecipes: { recipesFromMongo: chefcipe } } })
+        .then(() => res.redirect("/")) //redirect to the same page (/chef-recipes/;id)
+        .catch(error => next(error))
+
+})
+
+router.get("/makefav/api/:id", (req, res, next) => {
+
+    
+    const { _id: userId } = req.session.currentUser
+    const { id: recipe } = req.params
+
+
+    User
+        .findByIdAndUpdate(userId, { $push: { favRecipes: { recipesFromApi: recipe } } })
+        .then(() => res.redirect("/")) //redirect to the same page (/recipes/;id)
+        .catch(error => next(error))
+
+
+})
+
 
 module.exports = router

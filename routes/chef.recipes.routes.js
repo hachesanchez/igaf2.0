@@ -5,6 +5,9 @@ const Recipe = require('../models/Recipe.model')
 const router = express.Router()
 const uploaderMiddleware = require('../middlewares/uploader.middleware')
 
+const mongoose = require("mongoose");
+
+
 
 router.get("/create", isLoggedIn, checkRoles('CHEF', 'ADMIN'), (req, res, next) => {
     res.render('recipes/recipes-create')
@@ -13,7 +16,7 @@ router.get("/create", isLoggedIn, checkRoles('CHEF', 'ADMIN'), (req, res, next) 
 //BORRA HASTA AQUI!!!!!!!!!!!!!
 router.post("/create", isLoggedIn, checkRoles('CHEF', 'ADMIN'), uploaderMiddleware.single('image'), (req, res, next) => {
 
-    const { title, cookingTime, servings, instructions, amount, name, diets } = req.body
+    const { title, cookingTime, servings, instructions, amount, name, diets, likes } = req.body
     const { path: image } = req.file
     const userId = req.session.currentUser._id
     const ingredients = []
@@ -27,7 +30,7 @@ router.post("/create", isLoggedIn, checkRoles('CHEF', 'ADMIN'), uploaderMiddlewa
     }
 
     Recipe
-        .create({ title, cookingTime, servings, image, instructions, ingredients, diets })
+        .create({ title, cookingTime, servings, image, instructions, ingredients, diets, likes  })
         .then(recipe => User.findByIdAndUpdate(userId, { $push: { recipes: recipe._id } }))
         .then(() => res.redirect('/'))
         .catch(err => next(err))
@@ -70,7 +73,7 @@ router.get('/edit-chef-recipes/:id', isLoggedIn, (req, res, next) => {
 router.post('/edit-chef-recipes/:id', isLoggedIn, uploaderMiddleware.single('image'), (req, res, next) => {
 
     const { id } = req.params
-    const { title, cookingTime, servings, instructions, amount, name, diets } = req.body
+    const { title, cookingTime, servings, instructions, amount, name, diets, likes } = req.body
     const { path: image } = req.file
     const ingredients = []
 
@@ -83,7 +86,7 @@ router.post('/edit-chef-recipes/:id', isLoggedIn, uploaderMiddleware.single('ima
     }
 
     Recipe
-        .findByIdAndUpdate(id, { title, cookingTime, servings, image, instructions, ingredients, diets })
+        .findByIdAndUpdate(id, { title, cookingTime, servings, image, instructions, ingredients, diets, likes })
         .then(() => res.redirect("/chefs-recipes"))
         .catch(error => next(error))
 })

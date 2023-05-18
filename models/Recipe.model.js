@@ -43,7 +43,11 @@ const recipeSchema = new Schema(
             type: String,
             required: true,
             trim: true
-        }
+        },
+        likes: [{
+            type: Schema.Types.ObjectId,
+            ref: 'User'
+        }]
     },
     {
         timestamps: true

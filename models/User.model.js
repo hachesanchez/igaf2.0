@@ -36,6 +36,15 @@ const userSchema = new Schema(
     recipes: [{
       type: Schema.Types.ObjectId,
       ref: 'Recipe'
+    }],
+    favRecipes: [{
+      recipesFromMongo: {
+        type: Schema.Types.ObjectId,
+        ref: 'Recipe'
+      },
+      recipesFromApi: {
+        type: Number
+      }
     }]
   },
   {
