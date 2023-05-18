@@ -10,7 +10,7 @@ router.get("/create", isLoggedIn, checkRoles('CHEF', 'ADMIN'), (req, res, next) 
     res.render('recipes/recipes-create')
 })
 
-
+//BORRA HASTA AQUI!!!!!!!!!!!!!
 router.post("/create", isLoggedIn, checkRoles('CHEF', 'ADMIN'), uploaderMiddleware.single('image'), (req, res, next) => {
 
     const { title, cookingTime, servings, instructions, amount, name, diets } = req.body
@@ -27,7 +27,7 @@ router.post("/create", isLoggedIn, checkRoles('CHEF', 'ADMIN'), uploaderMiddlewa
 
     Recipe
         .create({ title, cookingTime, servings, image, instructions, ingredients, diets })
-        //.then(response => res.redirect(`/recipes/${response.data.id}`))
+        .then(recipe => User.findByIdAndUpdate(userId, { $push: { recipes: recipe._id } }))
         .then(() => res.redirect('/'))
         .catch(err => next(err))
 })

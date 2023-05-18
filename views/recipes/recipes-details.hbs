@@ -19,16 +19,24 @@
             <h1 class="mt-6">{{recipe.title}}</h1>
 
             <div class="col-md-6">
-                <div class="facts-table">
-                    <h2 class="mt-4"><strong>Facts:</strong></h2>
-                </div>
-                <div class="col-md-6 ml-4">
-                    <hr>
-                    <p> Ready in: {{recipe.readyInMinutes}} minutes</p>
-                    <hr>
-                    <p> Servings: {{recipe.servings}}</p>
-                    <hr>
-                    <p> Diets: {{recipe.diets}}</p>
+                <div class="extra-info">
+                    <div class="extra-info-text mt-6">
+                        <p>
+                            <img class="extra-info-img" src="././public/images/clock-png-5.png" alt="clock logo"
+                                style="width: 15px;">
+                            Ready in: {{recipe.readyInMinutes}} minutes
+                        </p>
+                        <hr>
+                        <p>
+                            <img class="extra-info-img"
+                                src=".././public/images/png-transparent-fork-and-spoon-logo-knife-fork-spoon-kitchen-utensil-plate-restaurant-logo-logo-black-and-white-symbol.png"
+                                alt="fork and spoon logo" style="width: 15px;">
+                            Servings: {{recipe.servings}}
+                        </p>
+                        <hr>
+                        <p> Diets: {{recipe.diets}}</p>
+
+                    </div>
                 </div>
             </div>
 
