@@ -55,25 +55,50 @@ router.get('/chefs-recipes/:id', isLoggedIn, (req, res, next) => {
         .catch(err => next(err))
 })
 
+router.get('/edit-chef-recipes/:id', isLoggedIn, (req, res, next) => {
+
+
+    const { id } = req.params
+
+    Recipe
+        .findById(id)
+        .then((chefcipes) => res.render("recipes/edit-chef-recipes", { chefcipes }))
+        .catch(err => next(err))
+})
+
+router.post('/edit-chef-recipes/:id', isLoggedIn, uploaderMiddleware.single('image'), (req, res, next) => {
+
+    const { id } = req.params
+    const { title, cookingTime, servings, instructions, amount, name, diets } = req.body
+    const { path: image } = req.file
+    const ingredients = []
+
+    for (let i = 0; i < amount.length; i++) {
+        let singleIgt = {
+            amount: amount[i],
+            name: name[i]
+        }
+        ingredients.push(singleIgt)
+    }
+
+    Recipe
+        .findByIdAndUpdate(id, { title, cookingTime, servings, image, instructions, ingredients, diets })
+        .then(() => res.redirect("/chefs-recipes"))
+        .catch(error => next(error))
+})
+
+router.post('/delete-chef-recipes/:id', (req, res, next) => {
+
+    const { id } = req.params
+
+    console.log(id)
+    console.log('holaaaa')
+    Recipe
+        .findByIdAndDelete(id)
+        .then(() => res.redirect("/chefs-recipes"))
+        .catch(error => next(error))
+})
+
+
+
 module.exports = router;
-
-
-
-
-
-// EDIT RECIPE
-// if(req.file){
-
-//     const { path: image } = req.file
-//     const { title, cookingTime, servings, instructions, amount, name, diets } = req.body
-
-//     User
-//         .findByIdAndUpdate(id, title, cookingTime, servings, instructions,image, amount, name, diets)
-//     .then(blablabla)
-//     .catch(blablalba)
-// }else{
-//     User
-//         .findByIdAndUpdate(id, title, cookingTime, servings, instructions, amount, name, diets)
-//         .then(blablabla)
-//         .catch(blablalba)
-// }

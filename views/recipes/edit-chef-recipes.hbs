@@ -1,0 +1,73 @@
+<div class="container mt-5">
+
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+
+            <h1>Edit Recipe</h1>
+            <hr>
+            <form action="/edit-chef-recipes/{{chefcipes.id}}" method="POST" enctype="multipart/form-data">
+                <div class="row">
+                    <div class="col">
+                        <div class="mb-3">
+                            <label for="title" class="form-label">Title</label>
+                            <input type="text" class="form-control" id="title" name="title" value="{{chefcipes.title}}">
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="mb-3">
+                            <label for="image" class="form-label">Image</label>
+                            <input type="file" class="form-control" id="image" name="image" value="{{chefcipes.image}}">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="cookingTime" class="form-label">Cooking Time</label>
+                    <input type="text" class="form-control" id="cookingTime" name="cookingTime"
+                        value="{{chefcipes.cookingTime}}">
+                </div>
+
+                <div class="mb-3">
+                    <label for="servings" class="form-label">Servings</label>
+                    <input type="text" class="form-control" id="servings" name="servings"
+                        value="{{chefcipes.servings}}">
+                </div>
+
+                <div class="mb-3">
+                    <label for="diets" class="form-label">Diets</label>
+                    <input type="text" class="form-control" id="diets" name="diets" value="{{chefcipes.diets}}">
+                </div>
+
+                <div class="mb-3">
+                    <label for="instructions" class="form-label">Instructions</label>
+                    <input type="text" class="form-control" id="instructions" name="instructions"
+                        value="{{chefcipes.instructions}}">
+                </div>
+
+                <div class="mb-3">
+                    <label for="ingredients" class="form-label">Ingredients</label>
+                    <div class="ingredient-inputs">
+
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="Amount" name="amount">
+                            <input type="text" class="form-control" placeholder="Name" name="name">
+                        </div>
+
+
+                    </div>
+                    <button type="button" id="addIngredient" class="btn btn-success add-ingredient-input">Add
+                        ingredient</button>
+                </div>
+
+                <div class="d-grid mt-5">
+                    <button type="submit" class="btn btn-dark btn-lg">Edit recipe</button>
+                </div>
+                
+            </form>
+        </div>
+    </div>
+
+
+</div>
+
+<script src="/js/dynamic-ingredient-form.js"></script>

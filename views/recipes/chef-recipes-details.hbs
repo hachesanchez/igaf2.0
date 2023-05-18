@@ -35,8 +35,12 @@
                 <h3>INSTRUCTIONS</h3>
                 <p>{{{chefcipes.instructions}}}</p>
             </div>
-
+            <div class="mt-5">
+                <a href="/edit-chef-recipes/{{chefcipes._id}}" class="btn-dark btn-sm">Edit</a>
+            </div>
+            <form action='/delete-chef-recipes/{{chefcipes._id}}' method="POST" style="display: inline">
+                <input type="submit" value="Eliminar" class="btn-sm btn-danger">
+            </form>
         </div>
     </div>
-
 </div>

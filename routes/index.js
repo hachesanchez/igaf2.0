@@ -7,7 +7,7 @@ module.exports = app => {
     app.use("/", authRouter);
 
     const recipeRouter = require("./recipes.routes");
-    app.use("/recipes", recipeRouter)
+    app.use("/", recipeRouter)
 
     const chefRecipesRouter = require("./chef.recipes.routes");
     app.use("/", chefRecipesRouter)

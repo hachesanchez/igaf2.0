@@ -2,7 +2,7 @@ const router = require("express").Router();
 const recipeApiHandler = require('../services/recipes-api.service');
 
 
-router.get('/', (req, res, next) => {
+router.get('/recipes', (req, res, next) => {
 
     const { ingredients } = req.query
 
@@ -16,17 +16,17 @@ router.get('/', (req, res, next) => {
 })
 
 
-router.get('/search', (req, res, next) => {
+router.get('/recipes/search', (req, res, next) => {
     res.render('recipes/recipes-search')
 })
 
 
-router.get('/tests', (req, res, next) => {
+router.get('/recipes/tests', (req, res, next) => {
     res.render('tests-h')
 })
 
 
-router.get('/:id', (req, res, next) => {
+router.get('/recipes/:id', (req, res, next) => {
 
     const { id } = req.params
 
