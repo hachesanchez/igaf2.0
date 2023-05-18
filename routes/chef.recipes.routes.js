@@ -29,7 +29,7 @@ router.post("/create", isLoggedIn, checkRoles('CHEF', 'ADMIN'), uploaderMiddlewa
     }
 
     Recipe
-        .create({ title, cookingTime, servings, image, instructions, ingredients, diets, likes  })
+        .create({ title, cookingTime, servings, image, instructions, ingredients, diets, likes })
         .then(recipe => User.findByIdAndUpdate(userId, { $push: { recipes: recipe._id } }))
         .then(() => res.redirect('/'))
         .catch(err => next(err))
@@ -94,8 +94,6 @@ router.post('/delete-chef-recipes/:id', (req, res, next) => {
 
     const { id } = req.params
 
-    console.log(id)
-    console.log('holaaaa')
     Recipe
         .findByIdAndDelete(id)
         .then(() => res.redirect("/chefs-recipes"))

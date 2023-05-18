@@ -34,7 +34,7 @@ router.get("/profile", (req, res, next) => {
         .then(user => {
             res.render('user/profile', user)
         })
-        .catch(err => console.log(err))
+        .catch(err => next(err))
 })
 
 
@@ -104,7 +104,6 @@ router.get("/makefav/api/:id", isLoggedIn, (req, res, next) => {
         .findByIdAndUpdate(userId, { $push: { favRecipes: { recipesFromApi: recipe } } })
         .then(() => res.redirect("/")) //redirect to the same page (/recipes/;id)
         .catch(error => next(error))
-
 
 })
 
