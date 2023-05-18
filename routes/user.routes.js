@@ -24,7 +24,7 @@ router.get("/profile", (req, res, next) => {
         .then(user => {
             res.render('user/profile', user)
         })
-        .catch(err => console.log(err))
+        .catch(err => next(err))
 })
 
 
@@ -86,7 +86,7 @@ router.get("/makefav/db/:id", (req, res, next) => {
 
 router.get("/makefav/api/:id", (req, res, next) => {
 
-    
+
     const { _id: userId } = req.session.currentUser
     const { id: recipe } = req.params
 

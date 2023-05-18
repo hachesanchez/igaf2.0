@@ -1,6 +1,46 @@
-{{#each user}}
-<img src="{{profileImage}}" alt="">
-{{userName}}
-{{email}}
-{{role}}
-{{/each}}
+<body class="chefs-details">
+
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-md-6">
+                <div class="chef-img">
+                    <img class="chef-img" src="{{user.profileImage}}" alt="profile-pic">
+                </div>
+            </div>
+
+            <div class="col-md-6 d-flex flex-column  justify-content-start align-items-center mt-5 ">
+                <h1>This is {{user.userName}} profile</h1>
+                <h3>Make the changes you suggest!</h3>
+                <h5>User's email is {{user.email}}</h5>
+                <h5>And user's role is {{user.role}}</h5>
+                <a href="/editprofiles/{{user.id}}" class="btn btn-secondary mt-2">Edit this profile</a>
+            </div>
+            <div class="col-md-6 d-flex flex-column  justify-content-start align-items-left mt-5 ">
+
+            </div>
+
+
+        </div>
+
+        <div class="row mt-5">
+            <h5>These are user's favorite recipes:</h5>
+            {{#each recipes}}
+
+            <div class="col-2 mt-2">
+
+                <div>
+                    <img class="card-img-top" src="{{image}}" alt="recipe picture">
+                </div>
+
+                <div class="card-body" style="color: black;">
+                    <h5 class="card-title"><strong>{{title}}</strong> </h5>
+                </div>
+
+            </div>
+
+            {{/each}}
+        </div>
+    </div>
+</body>
