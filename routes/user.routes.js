@@ -95,8 +95,7 @@ router.get("/makefav/api/:id", (req, res, next) => {
         .findByIdAndUpdate(userId, { $push: { favRecipes: { recipesFromApi: recipe } } })
         .then(() => res.redirect("/")) //redirect to the same page (/recipes/;id)
         .catch(error => next(error))
-
-
+        
 })
 
 
