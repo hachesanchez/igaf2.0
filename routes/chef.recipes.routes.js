@@ -1,6 +1,6 @@
 const express = require('express')
 const { isLoggedIn, checkRoles } = require('../middlewares/route-ward')
-//const User = require('../models/User.model')
+const User = require('../models/User.model')
 const Recipe = require('../models/Recipe.model')
 const router = express.Router()
 const uploaderMiddleware = require('../middlewares/uploader.middleware')
@@ -15,6 +15,7 @@ router.post("/create", isLoggedIn, checkRoles('CHEF', 'ADMIN'), uploaderMiddlewa
 
     const { title, cookingTime, servings, instructions, amount, name, diets } = req.body
     const { path: image } = req.file
+    const userId = req.session.currentUser._id
     const ingredients = []
 
     for (let i = 0; i < amount.length; i++) {
@@ -27,7 +28,7 @@ router.post("/create", isLoggedIn, checkRoles('CHEF', 'ADMIN'), uploaderMiddlewa
 
     Recipe
         .create({ title, cookingTime, servings, image, instructions, ingredients, diets })
-        //.then(response => res.redirect(`/recipes/${response.data.id}`))
+        .then(recipe => User.findByIdAndUpdate(userId, { $push: { recipes: recipe._id } }))
         .then(() => res.redirect('/'))
         .catch(err => next(err))
 })

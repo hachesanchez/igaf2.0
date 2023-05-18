@@ -23,8 +23,9 @@ router.get("/:id", (req, res, next) => {
 
     User
         .findById(id)
+        .populate('recipes')
         .then(chefs => res.render("chefs/chefs-details", { chefs }))
-        .catch((err) => console.log(err));
+        .catch((err) => next(err));
 });
 
 
