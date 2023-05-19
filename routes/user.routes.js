@@ -88,7 +88,7 @@ router.get("/makefav/db/:id", isLoggedIn, (req, res, next) => {
     const { id: chefcipe } = req.params
 
     User
-        .findByIdAndUpdate(userId, { $push: { favRecipes: { recipesFromMongo: chefcipe } } })
+        .findByIdAndUpdate(userId, { $addToSet: { favRecipes: { recipesFromMongo: chefcipe } } })
         .then((favRecipe) => res.redirect("/")) //redirect to the same page (/chef-recipes/;id)
         .catch(error => next(error))
 
@@ -101,7 +101,7 @@ router.get("/makefav/api/:id", isLoggedIn, (req, res, next) => {
     const { id: recipe } = req.params
 
     User
-        .findByIdAndUpdate(userId, { $push: { favRecipes: { recipesFromApi: recipe } } })
+        .findByIdAndUpdate(userId, { $addToSet: { favRecipes: { recipesFromApi: recipe } } })
         .then(() => res.redirect("/")) //redirect to the same page (/recipes/;id)
         .catch(error => next(error))
 

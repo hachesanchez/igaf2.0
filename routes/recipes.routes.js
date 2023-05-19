@@ -30,10 +30,6 @@ router.get('/recipes/search', (req, res, next) => {
 })
 
 
-router.get('/recipes/tests', (req, res, next) => {
-    res.render('tests-h')
-})
-
 
 router.get('/recipes/:id', (req, res, next) => {
 

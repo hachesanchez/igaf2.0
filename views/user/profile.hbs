@@ -4,13 +4,13 @@
 
         <div class="row">
 
-            <div class="col-md-6">
+            <div class="col-md-7">
                 <div class="chef-img">
-                    <img class="chef-img" src="{{profileImage}}" alt="profile-pic">
+                    <img class="chef-img " src="{{profileImage}}" alt="profile-pic">
                 </div>
             </div>
 
-            <div class="col-md-6 d-flex flex-column  justify-content-start align-items-center mt-5 ">
+            <div class="col-md-5 d-flex flex-column  justify-content-start align-items-center mt-5 ">
                 <h1>Welcome {{userName}}</h1>
                 <h3>We're glad to see you again!</h3>
                 <h5>Your email is {{email}}</h5>
@@ -22,24 +22,25 @@
 
         </div>
 
-
         <div class="row mt-5">
             <h5>These are your favorite recipes:</h5>
             {{!-- {{favRecipes}} --}}
 
             {{#each favRecipes}}
-
-            {{!-- {{#with recipesFromMongo}} --}}
+            {{#with recipesFromMongo}}
 
             <div class="col-2 mt-2">
                 <div>
-                    <img class="card-img-top" src="{{recipesFromMongo.image}}" alt="recipe picture">
+                    <img class="card-img-top" src="{{image}}" alt="recipe picture">
                 </div>
 
                 <div class="card-body" style="color: black;">
                     <h5 class="card-title"><strong>{{title}}</strong> </h5>
+                    <a href="/chefs-recipes/{{id}}" class="btn btn-outline-dark btn-sm">Details</a>
                 </div>
             </div>
+
+            {{/with}}
             {{/each}}
 
         </div>

@@ -8,19 +8,20 @@
 
             {{#each chefs}}
 
-            <div class="col-md-3 mb-4 mt-5">
+            <div class="card col-3 mt-2">
 
-                <div class="card" style="width: 18rem;">
-
-                    <img src="{{profileImage}}" class="card-img-top" alt="...">
-
-                    <div class="card-body">
-                        <a href="/chefs/{{id}}" class="chef-title"><strong>{{userName}}</strong></a>
-                    </div>
-
+                <div>
+                    <img src="{{profileImage}}" class="card-img-top" alt="chef profile picture">
                 </div>
 
+                <div class="card-body">
+                    <a href="/chefs/{{id}}" class="card-chef-list-title"><strong>{{userName}}</strong></a>
+                </div>
+
+                <h5 class=""><strong>{{title}}</strong> </h5>
+
             </div>
+
             {{/each}}
         </div>
 

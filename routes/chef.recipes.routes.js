@@ -1,5 +1,5 @@
 const express = require('express')
-const { isLoggedIn, checkRoles } = require('../middlewares/route-ward')
+const { isLoggedIn, checkRoles, checkChef, checkOwner } = require('../middlewares/route-ward')
 const User = require('../models/User.model')
 const Recipe = require('../models/Recipe.model')
 const router = express.Router()
@@ -15,7 +15,7 @@ router.get("/create", isLoggedIn, checkRoles('CHEF', 'ADMIN'), (req, res, next) 
 
 router.post("/create", isLoggedIn, checkRoles('CHEF', 'ADMIN'), uploaderMiddleware.single('image'), (req, res, next) => {
 
-    const { title, cookingTime, servings, instructions, amount, name, diets, likes } = req.body
+    const { title, cookingTime, servings, instructions, amount, name, diets, likes, owner } = req.body
     const { path: image } = req.file
     const userId = req.session.currentUser._id
     const ingredients = []
@@ -29,7 +29,7 @@ router.post("/create", isLoggedIn, checkRoles('CHEF', 'ADMIN'), uploaderMiddlewa
     }
 
     Recipe
-        .create({ title, cookingTime, servings, image, instructions, ingredients, diets, likes })
+        .create({ title, cookingTime, servings, image, instructions, ingredients, diets, likes, owner })
         .then(recipe => User.findByIdAndUpdate(userId, { $push: { recipes: recipe._id } }))
         .then(() => res.redirect('/'))
         .catch(err => next(err))
@@ -58,7 +58,7 @@ router.get('/chefs-recipes/:id', isLoggedIn, (req, res, next) => {
         .catch(err => next(err))
 })
 
-router.get('/edit-chef-recipes/:id', isLoggedIn, (req, res, next) => {
+router.get('/edit-chef-recipes/:id', isLoggedIn, checkOwner, (req, res, next) => {
 
 
     const { id } = req.params
@@ -69,7 +69,7 @@ router.get('/edit-chef-recipes/:id', isLoggedIn, (req, res, next) => {
         .catch(err => next(err))
 })
 
-router.post('/edit-chef-recipes/:id', isLoggedIn, uploaderMiddleware.single('image'), (req, res, next) => {
+router.post('/edit-chef-recipes/:id', isLoggedIn, checkOwner, uploaderMiddleware.single('image'), (req, res, next) => {
 
     const { id } = req.params
     const { title, cookingTime, servings, instructions, amount, name, diets, likes } = req.body
@@ -90,7 +90,7 @@ router.post('/edit-chef-recipes/:id', isLoggedIn, uploaderMiddleware.single('ima
         .catch(error => next(error))
 })
 
-router.post('/delete-chef-recipes/:id', (req, res, next) => {
+router.post('/delete-chef-recipes/:id', checkOwner, (req, res, next) => {
 
     const { id } = req.params
 

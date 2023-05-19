@@ -42,9 +42,9 @@ const userSchema = new Schema(
         type: Schema.Types.ObjectId,
         ref: 'Recipe'
       },
-      recipesFromApi: {
+      recipesFromApi: [{
         type: String
-      }
+      }]
     }]
   },
   {

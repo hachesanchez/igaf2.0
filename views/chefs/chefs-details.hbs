@@ -1,6 +1,7 @@
 <body class="chefs-details">
 
     <div class="container">
+
         <div class="row">
 
             <div class="col-md-6 d-flex flex-column  justify-content-end align-items-end">
@@ -15,52 +16,27 @@
             </div>
         </div>
 
-        <h2 class="mt-5">Check {{chefs.userName}}'s recipes:</h2>
-
-        <div class="row">
-            <div class="col-md-3 mb-4">
-
-                {{#each chefs.recipes}}
-                <div>
-                    <img class="card-img-top" src="{{image}}" alt="profile-pic">
-                </div>
-                <div class="card-body" style="color: black;">
-                    <a href="/chefs-recipes/{{id}}" class="chef-recipe-title">
-                        <h5><strong>{{title}}</strong> </h5>
-                    </a>
-                </div>
-                {{/each}}
-            </div>
-        </div>
-
-
-        <div class="container">
-
-            <h1>Registered Users</h1>
+        <div class="chefs-recipes">
 
             <div class="row">
 
-                {{#each chefs.recipes}}
-
-                <div class="col-md-3 mb-4">
-
-                    <div class="card" style="width: 18rem;">
-
-                        <img src="{{profileImage}}" class="card-img-top" alt="...">
-
-                        <div class="card-body">
-                            <h5 class="card-title">{{userName}}</h5>
-                            <p class="card-text">{{role}}</p>
-
-                        </div>
-
+                <div class="col-md-12 recipes-box">
+                    <h2 class="" style="color:brown">Check {{chefs.userName}}'s recipes:</h2>
+                    {{#each chefs.recipes}}
+                    <div>
+                        <img class="card-img-top positio-center" src="{{image}}" alt="profile-pic">
                     </div>
-
+                    <div class="card-body mb-5" style="color: black;">
+                        <a href="/chefs-recipes/{{id}}" class="chef-recipe-title">
+                            <h5><strong>{{title}}</strong> </h5>
+                        </a>
+                    </div>
+                    {{/each}}
                 </div>
 
-                {{/each}}
             </div>
-
         </div>
+
+
 
 </body>

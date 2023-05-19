@@ -42,17 +42,29 @@
                 <h3>INSTRUCTIONS</h3>
                 <p>{{{chefcipes.instructions}}}</p>
             </div>
-            <div class="mt-5">
-                <a href="/edit-chef-recipes/{{chefcipes._id}}" class="btn btn-secondary">Edit</a>
-            </div>
 
-            <div class="mt-5">
-                <a href="/makefav/db/{{chefcipes._id}}" class="btn btn-secondary">Fave</a>
-            </div>
+            <div class="buttons-for-edition mt-3">
 
-            <form action='/delete-chef-recipes/{{chefcipes._id}}' method="POST" style="display: inline">
-                <input type="submit" value="Eliminar" class="btn btn-secondary">
-            </form>
+                {{#if loggedUser.user}}
+                {{#if loggedUser.isChef}}
+                <div class="mt-2">
+                    <a href="/edit-chef-recipes/{{chefcipes._id}}" class="btn btn-secondary btn-sm">Edit</a>
+                </div>
+                <div class="mt-2">
+                    <a href="/makefav/db/{{chefcipes._id}}" class="btn btn-secondary btn-sm">Favorite</a>
+                </div>
+                <div class="mt-2">
+                    <form action='/delete-chef-recipes/{{chefcipes._id}}' method="POST" style="display: inline">
+                        <input type="submit" value="Eliminar" class="btn btn-danger btn-sm">
+                    </form>
+                </div>
+                {{else}}
+                <div class="mt-2">
+                    <a href="/makefav/db/{{chefcipes._id}}" class="btn btn-secondary btn-sm">Favorite</a>
+                </div>
+                {{/if}}
+                {{/if}}
+            </div>
         </div>
     </div>
 </div>
